@@ -1,6 +1,7 @@
-type ExampleEntity @entity {
+type ActiveItem @entity {
   id: ID!
-  count: BigInt!
-  buyer: Bytes! # address
+  buyer: Bytes # address 0x00000... if no one has bought yet
   nftAddress: Bytes! # address
+  tokenId: BigInt!
+  price: BigInt
 }
