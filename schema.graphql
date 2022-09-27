@@ -20,3 +20,11 @@ type ItemCanceled @entity {
   nftAddress: Bytes!
   tokenId: BigInt
 }
+
+type ItemBought @entity {
+  id: ID!
+  buyer: Bytes!
+  nftAddress: Bytes!
+  tokenId: BigInt!
+  price: BigInt
+}
