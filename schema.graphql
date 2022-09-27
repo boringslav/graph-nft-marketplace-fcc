@@ -13,3 +13,10 @@ type ItemListed @entity {
   tokenId: BigInt!
   price: BigInt
 }
+
+type ItemCanceled @entity {
+  id: ID!
+  seller: Bytes!
+  nftAddress: Bytes!
+  tokenId: BigInt
+}
