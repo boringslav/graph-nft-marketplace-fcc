@@ -59,6 +59,15 @@ export class ActiveItem extends Entity {
     }
   }
 
+  get seller(): Bytes {
+    let value = this.get("seller");
+    return value!.toBytes();
+  }
+
+  set seller(value: Bytes) {
+    this.set("seller", Value.fromBytes(value));
+  }
+
   get nftAddress(): Bytes {
     let value = this.get("nftAddress");
     return value!.toBytes();

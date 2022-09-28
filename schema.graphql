@@ -1,6 +1,7 @@
 type ActiveItem @entity {
   id: ID!
   buyer: Bytes # address 0x00000... if no one has bought yet
+  seller: Bytes!
   nftAddress: Bytes! # address
   tokenId: BigInt!
   price: BigInt
