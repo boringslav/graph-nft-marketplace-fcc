@@ -35,7 +35,32 @@ export function handleItemBought(event: ItemBoughtEvent): void {
   activeItem!.save();
 }
 
-export function handleItemCanceled(event: ItemCanceledEvent): void {}
+export function handleItemCanceled(event: ItemCanceledEvent): void {
+  let itemCanceled = ItemCanceled.load(
+    getIdFromEventParams(event.params.tokenId, event.params.nftAddress)
+  );
+  let activeItem = ActiveItem.load(
+    getIdFromEventParams(event.params.tokenId, event.params.nftAddress)
+  );
+
+  if (!itemCanceled) {
+    itemCanceled = new ItemCanceled(
+      getIdFromEventParams(event.params.tokenId, event.params.nftAddress)
+    );
+  }
+
+  itemCanceled.seller = event.params.seller;
+  itemCanceled.nftAddress = event.params.nftAddress;
+  itemCanceled.tokenId = event.params.tokenId;
+
+  //If the item has the dead address as a buyer it means that the item is canceled
+  activeItem!.buyer = Address.fromString(
+    "0x000000000000000000000000000000000000dEaD"
+  );
+
+  itemCanceled.save();
+  activeItem!.save();
+}
 
 export function handleItemListed(event: ItemListedEvent): void {
   let itemListed = ItemListed.load(
